@@ -23,7 +23,7 @@
 
 
     <!-- This is an SEO Change -->
-    <!-- Accessibility is one of the criteria for SEO -->>
+    <!-- Accessibility is one of the criteria for SEO -->
     <!-- This is an a11y Change -->
     <!-- colour and size of following texts are changed using css  -->
     <!-- used https://webaim.org/resources/contrastchecker/ to check contrast ration because my chrome was'nt showing the ratio -->
@@ -120,44 +120,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
 <script> 
- var data = [];
- var backgroundColor = [];
- var labels = [];
-
-
-    
-    function createChart() {
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var myPieChart = new Chart(ctx, {
-          type: "pie",
-          data: {
-            datasets: [
-              {
-                data,
-                backgroundColor
-              },
-            ],
-            labels
-          }
-        });
-      }
-
-
-    function getBudget() {
-        axios.get('http://localhost:3000/budget').then(function(res)
+var dataSource = {
+    datasets: [
         {
-            console.log(res.data);
-
-            for(var i = 0 ; i < res.data.length; i++)
-            {
-                data[i] = res.data[i].budget;
-                labels[i] = res.data[i].title;
-                backgroundColor[i] = res.data[i].backgroundColor;
+        data: [],
+        backgroundColor: [],
         }
-           createChart();
-        });
-    }
-    getBudget();
+    ],
+    labels: []
+};
+
+function createChart(){
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: dataSource
+    });
+}
+
+function getBudget(){
+    axios.get('http://localhost:3000/budget').then(function (res) {
+        console.log(res.data);
+        for (var i = 0; i < res.data.length; i++)
+        {
+            dataSource.datasets[0].data[i] = res.data[i].budget;
+            dataSource.labels[i] = res.data[i].title;
+            dataSource.datasets[0].backgroundColor[i] = res.data[i].color;
+        }
+        
+    createChart();
+    });
+}
+
+getBudget();
  
 </script>
 

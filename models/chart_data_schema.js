@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const nameSchema = new mongoose.Schema({
+const chartDataSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -11,8 +11,9 @@ const nameSchema = new mongoose.Schema({
     },
     backgroundColor: {
         type: String,
-        required: true
+        trim: true, 
+        required: true,
     }
-}, {collection: "names"});
+}, {collection: "chartData"});
 
-module.exports = mongoose.model("names", nameSchema);
+module.exports = mongoose.model("chartData", chartDataSchema);

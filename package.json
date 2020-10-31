@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/Dchauha5/personal-budget#readme",
   "dependencies": {
+    "body": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.11"
+    "mongoose": "^5.10.11",
+    "parser": "^0.1.4"
   },
   "devDependencies": {}
 }
