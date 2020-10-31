@@ -9,11 +9,10 @@ const chartDataSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    backgroundColor: {
+    color: {
         type: String,
-        trim: true, 
+        trim: true,
         required: true,
-        unique: true
     }
 }, {collection: "chartData"});
 
